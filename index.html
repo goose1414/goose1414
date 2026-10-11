@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sams chicken</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #e67e22; /* Chicken orange/yellow */
+            --secondary-color: #2c3e50; /* Dark blue/grey text */
+            --bg-color: #fdfbf7; /* Off-white cream background */
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--card-bg);
+            border-bottom: 4px solid var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* --- PHOTO GRID --- */
+        .gallery-section {
+            padding: 20px 0;
+        }
+
+        .photo-grid {
+            display: grid;
+            /* 
+               Responsive magic:
+               - Mobile: 1 column. 
+               - Tablet: auto-fill means as many columns as fit, min-width 300px.
+               - Large screens: Max 4 columns.
+            */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 650px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-caption {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .photo-caption h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .photo-caption span {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* --- LIGHTBOX (Modal) --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <h1>sams chickens</h1>
+            <p>photos of my chickens</p>
+        </div>
+    </header>
+
+    <!-- MAIN GALLERY -->
+    <main class="gallery-section">
+        <div class="container">
+            <!-- Note: Replace 'src' with your actual image file paths later -->
+            
+            <!-- Photo 1 -->
+            <div class="photo-card">
+                <!-- Using placeholder images for demo purposes. Replace 'src' with your file path -->
+                <img src="images/image1.jpg" alt="A brown hen walking">
+                <div class="photo-caption">
+                    <h3>bart</h3>
+                    <span>on the toilet</span>
+                </div>
+            </div>
+
+            <!-- Photo 2 -->
+                <div class="photo-card">
+                    <img src="images/image2.jpg" alt="Close up of a chick">
+                <div class="photo-caption">
+                    <h3>clucky</h3>
+                    <span>eating strawberries</span>
+                </div>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="photo-card">
+                <img src="images/image3.jpg" alt="Rooster in sun">
+                <div class="photo-caption">
+                    <h3>blade</h3>
+                    <span>he is cool</span>
+                </div>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="photo-card">
+                <img src="images/image4.jpg" alt="Two chicks resting">
+                <div class="photo-caption">
+                    <h3>clucky</h3>
+                    <span>very cute</span>
+                </div>
+            </div>
+
+            <!-- Photo 5 -->
+            <div class="photo-card">
+                <img src="images/image5.jpg" alt="Eggs in nest">
+                <div class="photo-caption">
+                    <h3>buffy</h3>
+                    <span>very fat</span>
+                </div>
+            </div>
+
+            <!-- Photo 6 -->
+            <div class="photo-card">
+                <img src="images/image6.jpg" alt="Fluffy hen">
+                <div class="photo-caption">
+                    <h3>wally</h3>
+                    <span>he likes food</span>
+                </div>
+            </div>
+
+             <!-- Photo 7 -->
+             <div class="photo-card">
+                <img src="images/image7.jpg" alt="Group shot">
+                <div class="photo-caption">
+                    <h3>clucky</h3>
+                    <span>likes raspberry</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Zoomed Image" id="lightbox-img">
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 sams chickens</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR INTERACTIVITY -->
+    <script>
+        // Select elements
+        const photoCards = document.querySelectorAll('.photo-card');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+
+        // Add click event to every photo card
+        photoCards.forEach(card => {
+            const img = card.querySelector('img');
+            
+            // When clicking a card, open lightbox with that image's src
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        // Close function for the lightbox
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            // Optional: reset image src after closing to clear browser cache memory
+            setTimeout(() => { lightboxImg.src = ''; }, 300); 
+        };
+
+        // Close when clicking the X
+        closeBtn.addEventListener('click', closeLightbox);
+
+        // Close when clicking outside the image (on the dark background)
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Close on Escape key (accessibility feature)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    </script>
+
+</body>
+</html>
